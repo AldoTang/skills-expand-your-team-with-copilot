@@ -59,10 +59,23 @@ These dependencies will be installed when you run `pip install -r requirements.t
 
 ### API Endpoints
 
+#### Activities
+
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
 | POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
 
+#### Stock Management
+
+| Method | Endpoint                      | Description                                        |
+| ------ | ----------------------------- | -------------------------------------------------- |
+| GET    | `/stock/`                     | Get all stock items (supports filtering)           |
+| GET    | `/stock/categories`           | Get list of all stock categories                   |
+| GET    | `/stock/{item_id}`            | Get a specific stock item by ID                    |
+| POST   | `/stock/`                     | Create a new stock item (requires authentication)  |
+| PUT    | `/stock/{item_id}`            | Update stock item quantity (requires authentication) |
+| DELETE | `/stock/{item_id}`            | Delete a stock item (requires authentication)      |
+
 > [!IMPORTANT]
-> All data is stored in memory, which means data will be reset when the server restarts.
+> All data is stored in MongoDB. Stock management operations require teacher authentication.
