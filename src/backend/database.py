@@ -10,6 +10,7 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['mergington_high']
 activities_collection = db['activities']
 teachers_collection = db['teachers']
+stock_collection = db['stock']
 
 # Methods
 def hash_password(password):
@@ -29,6 +30,11 @@ def init_database():
     if teachers_collection.count_documents({}) == 0:
         for teacher in initial_teachers:
             teachers_collection.insert_one({"_id": teacher["username"], **teacher})
+    
+    # Initialize stock items if empty
+    if stock_collection.count_documents({}) == 0:
+        for item in initial_stock_items:
+            stock_collection.insert_one(item)
 
 # Initial database if empty
 initial_activities = {
@@ -184,6 +190,54 @@ initial_teachers = [
         "display_name": "Principal Martinez",
         "password": hash_password("admin789"),
         "role": "admin"
+    }
+]
+
+initial_stock_items = [
+    {
+        "item_id": "SPORT-001",
+        "name": "Soccer Ball",
+        "category": "Sports Equipment",
+        "quantity": 15,
+        "unit": "pieces",
+        "location": "Storage Room A",
+        "min_quantity": 5
+    },
+    {
+        "item_id": "SPORT-002",
+        "name": "Basketball",
+        "category": "Sports Equipment",
+        "quantity": 12,
+        "unit": "pieces",
+        "location": "Storage Room A",
+        "min_quantity": 5
+    },
+    {
+        "item_id": "ART-001",
+        "name": "Acrylic Paint Set",
+        "category": "Art Supplies",
+        "quantity": 8,
+        "unit": "sets",
+        "location": "Art Room Cabinet",
+        "min_quantity": 3
+    },
+    {
+        "item_id": "TECH-001",
+        "name": "Arduino Kit",
+        "category": "Technology",
+        "quantity": 10,
+        "unit": "kits",
+        "location": "Robotics Lab",
+        "min_quantity": 5
+    },
+    {
+        "item_id": "OFFICE-001",
+        "name": "Printer Paper",
+        "category": "Office Supplies",
+        "quantity": 50,
+        "unit": "reams",
+        "location": "Main Office",
+        "min_quantity": 10
     }
 ]
 
