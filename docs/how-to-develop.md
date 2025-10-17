@@ -78,4 +78,4 @@ These dependencies will be installed when you run `pip install -r requirements.t
 | DELETE | `/stock/{item_id}`            | Delete a stock item (requires authentication)      |
 
 > [!IMPORTANT]
-> All data is stored in MongoDB. Stock management operations require teacher authentication.
+> All data is stored in MongoDB, which provides persistent storage. Stock management operations require teacher authentication.
